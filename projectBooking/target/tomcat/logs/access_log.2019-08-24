@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:01:45 +0700] "GET /projectBooking HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:01:47 +0700] "GET /projectBooking/ HTTP/1.1" 200 57 http-bio-8080-exec-2 1593
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:01:47 +0700] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:02:09 +0700] "GET /projectBooking/ HTTP/1.1" 200 57 http-bio-8080-exec-5 2
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:02:13 +0700] "GET /projectBooking/img HTTP/1.1" 404 987 http-bio-8080-exec-7 6
+0:0:0:0:0:0:0:1 - - [24/Aug/2019:20:02:18 +0700] "GET /projectBooking/ HTTP/1.1" 200 57 http-bio-8080-exec-8 1

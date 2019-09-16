@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Aug 24, 2019, 7:45:57 PM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.Hoadonphong" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="hoadonphong">
+        <composite-id class="src.main.java.booking.HoadonphongId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="usernamekhachhang" type="string">
+                <column length="50" name="usernamekhachhang"/>
+            </key-property>
+            <key-property name="sophong" type="java.lang.Integer">
+                <column name="sophong"/>
+            </key-property>
+            <key-property name="tongtien" type="java.lang.Integer">
+                <column name="tongtien"/>
+            </key-property>
+            <key-property name="ngaylayphong" type="date">
+                <column length="10" name="ngaylayphong"/>
+            </key-property>
+            <key-property name="ngaytraphong" type="date">
+                <column length="10" name="ngaytraphong"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="src.main.java.booking.Khachhang" embed-xml="true" fetch="select" insert="false" name="khachhang" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column length="50" name="usernamekhachhang"/>
+        </many-to-one>
+        <many-to-one class="src.main.java.booking.Phong" embed-xml="true" fetch="select" insert="false" name="phong" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="sophong"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
