@@ -42,7 +42,7 @@ public class userController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		return "users/home";
+		return "home";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

@@ -1,23 +1,34 @@
-$(document).ready(function(){
-	$('#butlogin').on('click', function(eve){
-		console.log(123123)
+$(document).ready(function() {
+	$('#signbtn').on("click", function(evebt){
 		if(!signInValidate()) {
 			return;
 		}
-		console.log(789789)
 		var postData = {
 			usernamekhachhang: $("input[name='username']").val(),
 			passwordkhachhang: $("input[name='password']").val(),
-			};
-		clientRequest.post("/api/user/login", postData)
+		};
+		
+		clientRequest.post("/api/user/signin", postData)
 		.then(function(res) {
-		console.log(1111, res)
+		
 			if(res.status == "Success") {
-//				window.localStorage.setItem("token", res.content);
-//				window.location.href=document.ctx+"/list";
+				//window.localStorage.setItem("token", res.content);
+				//window.location.href=document.ctx+"/admin";
 			}
 		})
 	});
+	
+	//Hiển thị màn hình SignIn khi click vào menu 
+	$('#app-signin').on("click", function(event) {
+		$('#appsignin').css({display: "block"});
+	});
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == document.getElementById('appsigincontent')) {
+	    	$('#appsignin').css({display: "none"});
+	    }
+	}
 	
 	function signInValidate() {
 		 var pristine = new Pristine($("#appsigincontent form")[0]);
@@ -30,4 +41,5 @@ $(document).ready(function(){
 		 }
 		 return true;
 	}
+
 })
