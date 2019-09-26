@@ -2,16 +2,24 @@ package src.main.Model;
 
 import java.io.Serializable;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDAOModel <T extends Serializable> {
 	private Class<T> entityClass;
 	  
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	private Session currentSession = null;
   
     /**
      * Inject entity class
@@ -27,7 +35,7 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      * @return Entity Object
      */
     public T findOne(long id){
-      return (T) getCurrentSession().get(entityClass, id);
+      return (T) currentSession.get(entityClass, id);
     }
  
     /**
@@ -35,8 +43,20 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      * @return List Entity Object
      */
     public Criteria find() {
-    	Criteria cr = getCurrentSession().createCriteria(entityClass);
+    	Criteria cr = currentSession.createCriteria(entityClass);
     	return cr;
+    }
+    
+    /**
+     * Create query
+     */
+    public CriteriaQuery<T> createQuery()
+    {
+    	CriteriaBuilder builder = currentSession.getCriteriaBuilder();
+    	CriteriaQuery<T> query = builder.createQuery(entityClass);
+    	Root<T> root = query.from(entityClass);
+    	query.select(root);
+    	return query;
     }
     
     /**
@@ -46,7 +66,7 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      */
     public T create(T entity) {
     	Transaction tx = null;
-    	Session session = getCurrentSession();
+    	Session session = currentSession;
     	try {
             tx = session.beginTransaction();
             session.save(entity);
@@ -68,8 +88,9 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      * @param entity
      * @return
      */
-    public T update(T entity) {
-        return (T) getCurrentSession().merge(entity);
+    @SuppressWarnings("unchecked")
+	public T update(T entity) {
+        return (T) currentSession.merge(entity);
     }
  
     /**
@@ -77,7 +98,7 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      * @param entity
      */
     public void delete(T entity) {
-        getCurrentSession().delete(entity);
+    	currentSession.delete(entity);
     }
  
     /**
@@ -89,29 +110,13 @@ public abstract class AbstractDAOModel <T extends Serializable> {
         delete(entity);
     }
  
-    /**
-     * Get current session of Hibernate
-     * @return
-     */
-    protected Session getCurrentSession() {
-        return sessionFactory.openSession();
+    @Autowired
+    protected void getCurrentSession() {
+    	try {
+    		currentSession = sessionFactory.getCurrentSession();
+    	}catch(HibernateException e) {
+    		currentSession = sessionFactory.openSession();
+    	}
     }
-    
-    /**
-     * Get session factory
-     * @return
-     */
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
- 
-    /**
-     * Set session factory
-     * @param sessionFactory
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
 
 }

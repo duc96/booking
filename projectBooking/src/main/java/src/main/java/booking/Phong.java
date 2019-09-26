@@ -1,5 +1,5 @@
 package src.main.java.booking;
-// Generated Aug 24, 2019, 7:47:20 PM by Hibernate Tools 5.2.12.Final
+// Generated Sep 26, 2019, 8:30:06 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;

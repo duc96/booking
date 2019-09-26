@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Sep 26, 2019, 8:54:49 PM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.AdminHome" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="admin_home">
+        <id name="idadmin" type="string">
+            <column length="20" name="idadmin"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="src.main.java.booking.Quanly" embed-xml="true" fetch="select" insert="true" name="quanly" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="50" name="idquanly" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="username" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="username" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="int" unique="false">
+            <column name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="email" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

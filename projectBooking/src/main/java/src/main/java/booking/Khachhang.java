@@ -1,5 +1,5 @@
 package src.main.java.booking;
-// Generated Aug 24, 2019, 7:47:20 PM by Hibernate Tools 5.2.12.Final
+// Generated Sep 26, 2019, 8:30:06 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,7 @@ import java.util.Set;
 public class Khachhang implements java.io.Serializable {
 
 	private String usernamekhachhang;
-	private String passwordkhachhang;
+	private int passwordkhachhang;
 	private String emailkhachhang;
 	private int idkhachhang;
 	private Set hoadonphongs = new HashSet(0);
@@ -18,13 +18,13 @@ public class Khachhang implements java.io.Serializable {
 	public Khachhang() {
 	}
 
-	public Khachhang(String passwordkhachhang, String emailkhachhang, int idkhachhang) {
+	public Khachhang(int passwordkhachhang, String emailkhachhang, int idkhachhang) {
 		this.passwordkhachhang = passwordkhachhang;
 		this.emailkhachhang = emailkhachhang;
 		this.idkhachhang = idkhachhang;
 	}
 
-	public Khachhang(String passwordkhachhang, String emailkhachhang, int idkhachhang, Set hoadonphongs) {
+	public Khachhang(int passwordkhachhang, String emailkhachhang, int idkhachhang, Set hoadonphongs) {
 		this.passwordkhachhang = passwordkhachhang;
 		this.emailkhachhang = emailkhachhang;
 		this.idkhachhang = idkhachhang;
@@ -39,11 +39,11 @@ public class Khachhang implements java.io.Serializable {
 		this.usernamekhachhang = usernamekhachhang;
 	}
 
-	public String getPasswordkhachhang() {
+	public int getPasswordkhachhang() {
 		return this.passwordkhachhang;
 	}
 
-	public void setPasswordkhachhang(String passwordkhachhang) {
+	public void setPasswordkhachhang(int passwordkhachhang) {
 		this.passwordkhachhang = passwordkhachhang;
 	}
 

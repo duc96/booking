@@ -8,7 +8,7 @@ $(document).ready(function() {
 			passwordkhachhang: $("input[name='password']").val(),
 		};
 		
-		clientRequest.post("/api/user/signin", postData)
+		clientRequest.post("/api/user/login", postData)
 		.then(function(res) {
 		
 			if(res.status == "Success") {
