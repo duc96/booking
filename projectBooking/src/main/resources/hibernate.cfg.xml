@@ -18,5 +18,7 @@
   <mapping resource="src/main/java/booking/Phong.hbm.xml"/>
   <mapping resource="src/main/java/booking/Quanly.hbm.xml"/>
   <mapping resource="src/main/java/booking/AdminHome.hbm.xml"/>
+  <mapping resource="src/main/java/booking/AdminUsers.hbm.xml"/>
+  <mapping resource="src/main/java/booking/AdminUserSession.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

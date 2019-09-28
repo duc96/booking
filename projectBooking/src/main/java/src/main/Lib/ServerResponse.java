@@ -1,4 +1,4 @@
-package src.main.Model;
+package src.main.Lib;
 
 import com.google.gson.Gson;
 
@@ -16,7 +16,7 @@ public class ServerResponse {
     	status = _status;
     }
     
-    public String getContent()
+    public String encode()
     {
     	Gson gson = new Gson();
     	

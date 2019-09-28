@@ -1,29 +1,36 @@
 package src.main.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
 
-import src.main.java.booking.Khachhang;
-import src.main.Lib.HibernateUtil;
+import src.main.java.booking.AdminUserSession;
+import src.main.java.booking.AdminUsers;
 import src.main.Lib.Utils;
 import src.main.Model.BookingHibernateDao;
 import src.main.Model.IGenericDao;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+	
 	@Autowired
-	BookingHibernateDao <Khachhang> staffDAO;
+	BookingHibernateDao daoObj;
+	
+	@Autowired
+	private void initialDAO() {
+		daoObj.setClazz(AdminUsers.class);
+	}
 	
 	/**
 	 * Check authentication
@@ -31,29 +38,53 @@ public class UserService {
 	 * @param password
 	 * @return
 	 */
-	public String auth(Khachhang staff2) {
+	public String auth(String loginname, String password) {
 		String token = "";
-		System.out.println(9999992);
-		staffDAO.setClazz(Khachhang.class);
-		Criteria cr = staffDAO.find();
+		Criteria cr = daoObj.find();
+		System.out.println(111222);
+		System.out.print(password);
+		cr.add(Restrictions.eq("loginname", loginname));
+		cr.add(Restrictions.eq("password", Utils.generatePassword(password)));
 		
-//		query.select(query.from(Khachhang.class));
-//		List<Khachhang> list = query.getResultList();
-//		Criteria cr = staffDAO.find();
-//		cr.add(Restrictions.eq("usernamekhachhang", username));
-//		cr.add(Restrictions.eq("passwordkhachhang", Utils.generatePassword(password)));
-//		
-		Khachhang staff = null;
-		List staffs = cr.list();
-        for (Iterator iterator = staffs.iterator(); iterator.hasNext();){
-        	staff = (Khachhang) iterator.next(); 
+		AdminUsers user = null;
+		List users = cr.list();
+        for (Iterator iterator = users.iterator(); iterator.hasNext();){
+        	user = (AdminUsers) iterator.next(); 
         	break;
         }
-        System.out.println(44444);
-        System.out.print(staff);
-        if(staff != null) {
-        	token = Utils.generateToken();
+        if(user != null) {
+        	token = createToken(user.getUserId());
         }
-        return "sdfsf";
+        return token;
     }
+	
+	/**
+	 * Create user's token
+	 * @param userid
+	 * @return
+	 */
+	private String createToken(int userid)
+	{
+		String token = Utils.generateToken();
+		AdminUserSession _session = new AdminUserSession();
+		_session.setUserId(userid);
+		_session.setToken(token);
+		_session.setCretatedate(new Date());
+		_session.setLastmodified(new Date());
+		daoObj.create(_session);
+		
+		return token;
+	}
+	
+	private void createNewUser()
+	{
+		AdminUsers user = new AdminUsers();
+		user.setLoginname("admin");
+		user.setPassword(Utils.generatePassword("password"));
+		user.setFullname("Administration");
+		user.setCreateby(0);
+		
+		daoObj.create(user);
+		
+	}
 }

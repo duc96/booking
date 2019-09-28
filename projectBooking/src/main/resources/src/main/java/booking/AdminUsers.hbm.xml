@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Sep 28, 2019, 5:10:51 PM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.AdminUsers" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="admin_users">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="loginname" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="loginname" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="600" name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fullname" optimistic-lock="true" type="string" unique="false">
+            <column length="250" name="fullname" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="address1" optimistic-lock="true" type="string" unique="false">
+            <column length="250" name="address1"/>
+        </property>
+        <property generated="never" lazy="false" name="address2" optimistic-lock="true" type="string" unique="false">
+            <column length="250" name="address2"/>
+        </property>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="city"/>
+        </property>
+        <property generated="never" lazy="false" name="country" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="country"/>
+        </property>
+        <property generated="never" lazy="false" name="zipcode" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="zipcode"/>
+        </property>
+        <property generated="never" lazy="false" name="createby" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="createby"/>
+        </property>
+        <property generated="never" lazy="false" name="cretatedate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="23" name="cretatedate"/>
+        </property>
+    </class>
+</hibernate-mapping>

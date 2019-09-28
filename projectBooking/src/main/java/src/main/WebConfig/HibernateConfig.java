@@ -47,12 +47,9 @@ public class HibernateConfig {
     @Bean
     public LocalSessionFactoryBean getSessionFactory() throws IOException {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-//        System.out.print(dataSource());
-
 
         factoryBean.setConfigLocation(context.getResource("classpath:hibernate.cfg.xml"));
         factoryBean.setDataSource(dataSource());
-//        factoryBean.setPackagesToScan(new String[] { "src.main.*" });
         factoryBean.setHibernateProperties(hibernateProperties());
         return factoryBean;
     }

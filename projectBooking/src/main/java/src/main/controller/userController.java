@@ -1,5 +1,8 @@
 package src.main.controller;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import src.main.Lib.ServerResponse;
 import src.main.Service.UserService;
 import src.main.java.booking.Khachhang;
 
@@ -24,19 +30,17 @@ public class userController {
 	}
 
 	@RequestMapping(value = "/api/user/login", method = RequestMethod.POST)
-	public @ResponseBody String signinAction(@RequestBody String staffInfo) {
-		System.out.print(staffInfo);
-		Gson gson = new Gson();
-		Khachhang staff = gson.fromJson(staffInfo, Khachhang.class);
-		String token = userService.auth(new Khachhang());
-//		ServerResponse response = new ServerResponse();
-//		if (token.isEmpty()) {
-//			response.setStatus("Fail");
-//		}
-//		response.setContent(token);
-//		return gson.toJson(response);
+	public @ResponseBody String signinAction(@RequestBody HashMap<String, ?> postBody) {
 		
-		return "";
+		String token = userService.auth((String)postBody.get("loginname"), (String)postBody.get("password"));
+		ServerResponse response = new ServerResponse();
+		
+		if(token.isEmpty()) {
+			response.setStatus("Fail");
+		}
+		response.setContent(token);
+		
+		return response.encode();
 	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)

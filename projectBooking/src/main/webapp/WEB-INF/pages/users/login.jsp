@@ -14,7 +14,6 @@
 			</div>
 
 			<div class="container">
-				<div class="error-message"></div>
 				<div class="form-group">
 					<label for="username"><b>Tài Khoản</b></label> <input type="text"
 						placeholder="Tài khoản/Email" name="username" required>
@@ -24,6 +23,7 @@
 						type="password" placeholder="Nhập mật khẩu" name="password"
 						required>
 				</div>
+				<div class="error-message">Tài khoản hoặc mật khẩu không đúng.</div>
 				<button id="signbtn" type="button">Đăng Nhập</button>
 				<label> <input type="checkbox" name="remember"> Ghi
 					nhớ tài khoản

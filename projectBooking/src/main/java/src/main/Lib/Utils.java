@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.UUID;
 
 public class Utils {
 	/**
@@ -42,9 +43,9 @@ System.out.print(txt);
 	 */
 	public static String generateToken()
 	{
-		SecureRandom random = new SecureRandom();
-		byte bytes[] = new byte[20];
-		random.nextBytes(bytes);
-		return bytes.toString();
+		String source = "asdfghjklzxcvbnmqwertyuiop1234567890";
+		byte[] bytes = source.getBytes();
+		UUID uuid = UUID.nameUUIDFromBytes(bytes);
+		return uuid.toString();
 	}
 }

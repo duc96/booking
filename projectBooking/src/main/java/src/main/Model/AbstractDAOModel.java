@@ -75,10 +75,7 @@ public abstract class AbstractDAOModel <T extends Serializable> {
             if (tx != null)
                 tx.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
-
         
         return entity;
     }
