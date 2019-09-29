@@ -3,6 +3,7 @@
 	border: 0 !important;
 	border-radius: 0!important;
 	background-color: #0f2eca;
+	z-index: 1010;
 }
 .app-header a {
 	color: white !important;

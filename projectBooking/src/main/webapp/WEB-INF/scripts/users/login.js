@@ -13,7 +13,7 @@ $(document).ready(function() {
 		
 			if(res.status == "Success") {
 				window.localStorage.setItem("token", res.content);
-				//window.location.href=document.ctx+"/admin";
+				window.location.href=document.ctx+"/admin";
 			} else {
 				$("#appsignin .error-message").css({display: "block"})
 			}

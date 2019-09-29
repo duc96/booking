@@ -1,5 +1,5 @@
 package src.main.java.booking;
-// Generated Sep 28, 2019, 5:11:06 PM by Hibernate Tools 5.2.12.Final
+// Generated Sep 29, 2019, 1:51:37 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import java.util.Date;
 public class AdminUsers implements java.io.Serializable {
 
 	private Integer userId;
-	private String loginname;
+	private String email;
 	private String password;
 	private String fullname;
 	private String address1;
@@ -19,19 +19,20 @@ public class AdminUsers implements java.io.Serializable {
 	private String zipcode;
 	private Integer createby;
 	private Date cretatedate;
+	private Integer isdeleted;
 
 	public AdminUsers() {
 	}
 
-	public AdminUsers(String loginname, String password, String fullname) {
-		this.loginname = loginname;
+	public AdminUsers(String email, String password, String fullname) {
+		this.email = email;
 		this.password = password;
 		this.fullname = fullname;
 	}
 
-	public AdminUsers(String loginname, String password, String fullname, String address1, String address2, String city,
-			String country, String zipcode, Integer createby, Date cretatedate) {
-		this.loginname = loginname;
+	public AdminUsers(String email, String password, String fullname, String address1, String address2, String city,
+			String country, String zipcode, Integer createby, Date cretatedate, Integer isdeleted) {
+		this.email = email;
 		this.password = password;
 		this.fullname = fullname;
 		this.address1 = address1;
@@ -41,6 +42,7 @@ public class AdminUsers implements java.io.Serializable {
 		this.zipcode = zipcode;
 		this.createby = createby;
 		this.cretatedate = cretatedate;
+		this.isdeleted = isdeleted;
 	}
 
 	public Integer getUserId() {
@@ -51,12 +53,12 @@ public class AdminUsers implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public String getLoginname() {
-		return this.loginname;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setLoginname(String loginname) {
-		this.loginname = loginname;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -129,6 +131,14 @@ public class AdminUsers implements java.io.Serializable {
 
 	public void setCretatedate(Date cretatedate) {
 		this.cretatedate = cretatedate;
+	}
+
+	public Integer getIsdeleted() {
+		return this.isdeleted;
+	}
+
+	public void setIsdeleted(Integer isdeleted) {
+		this.isdeleted = isdeleted;
 	}
 
 }

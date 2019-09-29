@@ -18,7 +18,7 @@ var lang = {
 };
 
 function findAncestor(el, cls) {
-    while ((el = el.parentElement) && !el.classList.contains(cls)) {}
+    while (el && (el = el.parentElement) && !el.classList.contains(cls)) {}
     return el;
 }
 
@@ -93,6 +93,7 @@ _('max', { fn: function fn(val, limit) {
         return !val || (this.type === 'checkbox' ? groupedElemCount(this) <= parseInt(limit) : parseFloat(val) <= parseFloat(limit));
     } });
 _('pattern', { fn: function fn(val, pattern) {
+	console.log(pattern)
         var m = pattern.match(new RegExp('^/(.*?)/([gimy]*)$'));return !val || new RegExp(m[1], m[2]).test(val);
     } });
 
@@ -221,7 +222,7 @@ function Pristine(form, config, live) {
             var validator = field.validators[i];
             var params = field.params[validator.name] ? field.params[validator.name] : [];
             params[0] = field.input.value;
-            if (!validator.fn.apply(field.input, params)) {
+            if (validator.fn && !validator.fn.apply(field.input, params)) {
                 valid = false;
                 var error = field.messages[validator.name] || validator.msg;
                 errors.push(tmpl.apply(error, params));

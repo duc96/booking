@@ -74,7 +74,7 @@ public abstract class AbstractDAOModel <T extends Serializable> {
         } catch (HibernateException e) {
             if (tx != null)
                 tx.rollback();
-            e.printStackTrace();
+            throw new NullPointerException(e.getMessage()); 
         }
         
         return entity;
