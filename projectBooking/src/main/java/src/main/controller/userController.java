@@ -28,10 +28,10 @@ public class userController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/api/user/remove", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String removeAction(@RequestBody Integer id) {
+	public @ResponseBody String removeAction(@RequestBody HashMap<String, ?> postBody) {
 		ServerResponse response = new ServerResponse();
 		try {
-			userService.removeUser(id);
+			userService.removeUser(Integer.parseInt((String)postBody.get("id")));
 		}catch(NullPointerException e) {
 			response.setStatus("Fail");
 		}
@@ -110,7 +110,7 @@ public class userController {
 	@RequestMapping(value = "/api/user/login", method = RequestMethod.POST)
 	public @ResponseBody String signinAction(@RequestBody HashMap<String, ?> postBody) {
 		
-		String token = userService.auth((String)postBody.get("loginname"), (String)postBody.get("password"));
+		String token = userService.auth((String)postBody.get("email"), (String)postBody.get("password"));
 		ServerResponse response = new ServerResponse();
 		
 		if(token.isEmpty()) {

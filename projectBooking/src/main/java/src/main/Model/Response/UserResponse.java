@@ -16,6 +16,7 @@ public class UserResponse {
 	private String country;
 	private String zipcode;
 	private String cretatedate;
+	private String status;
 	
 	public void serialize(AdminUsers user)
 	{
@@ -27,9 +28,14 @@ public class UserResponse {
 		this.country 		= user.getCountry();
 		this.zipcode 		= user.getZipcode();
 		this.id				= user.getUserId();
+		this.status			= "Hoạt động";
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy");
 		this.cretatedate = format.format(user.getCretatedate());
+		
+		if(user.getIsdeleted() == 1) {
+			this.status			= "Khoá";
+		}
 	}
 	
 	public Integer getIndex() {

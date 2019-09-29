@@ -11,6 +11,7 @@
             <th data-column-id="index" data-type="numeric">STT</th>
             <th data-column-id="fullname">Người Dùng</th>
             <th data-column-id="email">Email</th>
+            <th data-column-id="">Trạng Thái</th>
             <th data-column-id="cretatedate">Ngày Tạo</th>
             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
         </tr>

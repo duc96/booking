@@ -85,9 +85,19 @@ public abstract class AbstractDAOModel <T extends Serializable> {
      * @param entity
      * @return
      */
-    @SuppressWarnings("unchecked")
 	public T update(T entity) {
-        return (T) currentSession.merge(entity);
+    	Transaction tx = null;
+    	Session session = currentSession;
+    	try {
+            tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            throw new NullPointerException(e.getMessage()); 
+        }
+        return entity;
     }
  
     /**

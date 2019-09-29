@@ -27,8 +27,9 @@ $(document).ready(function() {
 	        editData($(this).data());
 	    }).end().find(".command-delete").on("click", function(e)
 	    {
+	    	var _data = $(this).data();
 	        confirmObj.show("Bạn có muốn xoá dữ liệu?", function(){
-	        	removeData($(this).data());
+	        	removeData(_data);
 	        });
 	    });
 	});
@@ -36,7 +37,7 @@ $(document).ready(function() {
 	//Delete data
 	function removeData(data)
 	{
-		clientRequest.get("/api/user/remove", {id: parseInt(data.rowId)})
+		clientRequest.post("/api/user/remove", {id: data.rowId + "" })
 		.then(function(res) {
 			console.log(res)
 			if(res.status == "Success") {

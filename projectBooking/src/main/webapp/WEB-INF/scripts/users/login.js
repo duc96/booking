@@ -1,10 +1,33 @@
 $(document).ready(function() {
-	$('#signbtn').on("click", function(evebt){
+	
+	//Đăng ký sự kiện onkeyup của input, khi nhấn phím Enter ==> Login
+	$('#app-signin input').on("keyup", function(event){
+		if(event.keyCode == 13) {
+			doLogin(event);
+		}
+	});
+	
+	//Đăng ký sự kiện click button "Đăng Nhập"
+	$('#signbtn').on("click", doLogin);
+	
+	//Hiển thị màn hình SignIn khi click vào menu 
+	$('#app-signin').on("click", function(event) {
+		$('#appsignin').css({display: "block"});
+	});
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == document.getElementById('appsigincontent')) {
+	    	$('#appsignin').css({display: "none"});
+	    }
+	}
+	
+	function doLogin(event){
 		if(!signInValidate()) {
 			return;
 		}
 		var postData = {
-			loginname: $("input[name='username']").val(),
+			email: $("input[name='email']").val(),
 			password: $("input[name='password']").val(),
 		};
 		
@@ -18,18 +41,6 @@ $(document).ready(function() {
 				$("#appsignin .error-message").css({display: "block"})
 			}
 		})
-	});
-	
-	//Hiển thị màn hình SignIn khi click vào menu 
-	$('#app-signin').on("click", function(event) {
-		$('#appsignin').css({display: "block"});
-	});
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == document.getElementById('appsigincontent')) {
-	    	$('#appsignin').css({display: "none"});
-	    }
 	}
 	
 	function signInValidate() {

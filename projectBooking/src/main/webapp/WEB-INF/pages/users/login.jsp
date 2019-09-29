@@ -15,8 +15,8 @@
 
 			<div class="container">
 				<div class="form-group">
-					<label for="username"><b>Tài Khoản</b></label> <input type="text"
-						placeholder="Tài khoản/Email" name="username" required>
+					<label for="email"><b>Tài Khoản</b></label> <input type="text"
+						placeholder="Tài khoản/Email" name="email" required>
 				</div>
 				<div class="form-group">
 					<label for="password"><b>Mật Khẩu</b></label> <input

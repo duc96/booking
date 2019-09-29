@@ -46,7 +46,7 @@ public class UserService {
 		List <UserResponse> results = new ArrayList<UserResponse>();
 		Criteria cr = daoObj.find();
 		
-		cr.add(Restrictions.eq("isdeleted", 0));
+//		cr.add(Restrictions.eq("isdeleted", 0));
 		
 		if(postBody.containsKey("rowCount")) {
 			rowCount = Integer.parseInt((String)postBody.get("rowCount"));
@@ -124,10 +124,11 @@ public class UserService {
         	user = (AdminUsers) iterator.next(); 
         	break;
         }
-        
-        user.setIsdeleted(1);
-        
-		daoObj.update(user);
+        System.out.println(user);
+        if(user != null) {
+        	user.setIsdeleted(1);
+			daoObj.update(user);
+        }
 	}
 	
 	/**
@@ -198,10 +199,10 @@ public class UserService {
 	 * @param password
 	 * @return
 	 */
-	public String auth(String loginname, String password) {
+	public String auth(String email, String password) {
 		String token = "";
 		Criteria cr = daoObj.find();
-		cr.add(Restrictions.eq("loginname", loginname));
+		cr.add(Restrictions.eq("email", email));
 		cr.add(Restrictions.eq("password", Utils.generatePassword(password)));
 		
 		AdminUsers user = null;
