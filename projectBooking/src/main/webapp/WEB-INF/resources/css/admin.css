@@ -46,8 +46,14 @@
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   margin-left: -20px;
+}
+.nav-sidebar > span {
+	font-size: larger;
+}
+.nav-sidebar li {
+	border-bottom: 1px solid #eee;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -105,4 +111,7 @@
 
 input[disabled] {
     background-color: #eee;
+}
+.nav-sidebar a > i{
+	margin-right: 5px;
 }

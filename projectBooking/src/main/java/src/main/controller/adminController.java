@@ -48,6 +48,9 @@ public class adminController {
 		if(page.equals("users")) {
 			_page = "/WEB-INF/pages/admin/users/index.jsp";
 		}
+		if(page.equals("service_type")) {
+			_page = "/WEB-INF/pages/admin/services/service_type.jsp";
+		}
 		return _page;
 	}
 	

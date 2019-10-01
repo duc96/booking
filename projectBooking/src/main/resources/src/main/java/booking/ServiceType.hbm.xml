@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 1, 2019, 11:56:33 PM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.ServiceType" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="service_type">
+        <id name="serviceId" type="java.lang.Integer">
+            <column name="service_id"/>
+            <generator class="identity"/>
+        </id>
+        <property generated="never" lazy="false" name="serviceName" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="service_name" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="serviceCode" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="service_code" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="serviceDescription" optimistic-lock="true" type="string" unique="false">
+            <column length="600" name="service_description" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="createby" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="createby"/>
+        </property>
+        <property generated="never" lazy="false" name="cretatedate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="23" name="cretatedate"/>
+        </property>
+        <property generated="never" lazy="false" name="isdeleted" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="isdeleted"/>
+        </property>
+    </class>
+</hibernate-mapping>

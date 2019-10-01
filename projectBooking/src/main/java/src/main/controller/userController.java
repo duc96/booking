@@ -25,7 +25,7 @@ import src.main.java.booking.Khachhang;
 @Controller
 public class userController {
 	@Autowired
-	private UserService userService;
+	UserService userService;
 	
 	@RequestMapping(value = "/api/user/remove", method = RequestMethod.POST, produces = "application/json")
 	public @ResponseBody String removeAction(@RequestBody HashMap<String, ?> postBody) {

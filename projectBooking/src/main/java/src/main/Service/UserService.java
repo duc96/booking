@@ -31,7 +31,7 @@ public class UserService {
 	BookingHibernateDao daoObj;
 	
 	@Autowired
-	private void initialDAO() {
+	public void initialDAO() {
 		daoObj.setClazz(AdminUsers.class);
 	}
 	
