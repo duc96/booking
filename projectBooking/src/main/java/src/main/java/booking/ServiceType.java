@@ -1,5 +1,5 @@
 package src.main.java.booking;
-// Generated Oct 1, 2019, 11:56:01 PM by Hibernate Tools 5.2.12.Final
+// Generated Oct 5, 2019, 3:25:22 PM by Hibernate Tools 5.4.3.Final
 
 import java.util.Date;
 
@@ -8,10 +8,10 @@ import java.util.Date;
  */
 public class ServiceType implements java.io.Serializable {
 
-	private Integer serviceId;
-	private String serviceName;
-	private String serviceCode;
-	private String serviceDescription;
+	private Integer serviceTypeId;
+	private String serviceTypeName;
+	private String serviceTypeCode;
+	private String serviceTypeDescription;
 	private Integer createby;
 	private Date cretatedate;
 	private Integer isdeleted;
@@ -19,52 +19,52 @@ public class ServiceType implements java.io.Serializable {
 	public ServiceType() {
 	}
 
-	public ServiceType(String serviceName, String serviceCode, String serviceDescription) {
-		this.serviceName = serviceName;
-		this.serviceCode = serviceCode;
-		this.serviceDescription = serviceDescription;
+	public ServiceType(String serviceTypeName, String serviceTypeCode, String serviceTypeDescription) {
+		this.serviceTypeName = serviceTypeName;
+		this.serviceTypeCode = serviceTypeCode;
+		this.serviceTypeDescription = serviceTypeDescription;
 	}
 
-	public ServiceType(String serviceName, String serviceCode, String serviceDescription, Integer createby,
+	public ServiceType(String serviceTypeName, String serviceTypeCode, String serviceTypeDescription, Integer createby,
 			Date cretatedate, Integer isdeleted) {
-		this.serviceName = serviceName;
-		this.serviceCode = serviceCode;
-		this.serviceDescription = serviceDescription;
+		this.serviceTypeName = serviceTypeName;
+		this.serviceTypeCode = serviceTypeCode;
+		this.serviceTypeDescription = serviceTypeDescription;
 		this.createby = createby;
 		this.cretatedate = cretatedate;
 		this.isdeleted = isdeleted;
 	}
 
-	public Integer getServiceId() {
-		return this.serviceId;
+	public Integer getServiceTypeId() {
+		return this.serviceTypeId;
 	}
 
-	public void setServiceId(Integer serviceId) {
-		this.serviceId = serviceId;
+	public void setServiceTypeId(Integer serviceTypeId) {
+		this.serviceTypeId = serviceTypeId;
 	}
 
-	public String getServiceName() {
-		return this.serviceName;
+	public String getServiceTypeName() {
+		return this.serviceTypeName;
 	}
 
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public void setServiceTypeName(String serviceTypeName) {
+		this.serviceTypeName = serviceTypeName;
 	}
 
-	public String getServiceCode() {
-		return this.serviceCode;
+	public String getServiceTypeCode() {
+		return this.serviceTypeCode;
 	}
 
-	public void setServiceCode(String serviceCode) {
-		this.serviceCode = serviceCode;
+	public void setServiceTypeCode(String serviceTypeCode) {
+		this.serviceTypeCode = serviceTypeCode;
 	}
 
-	public String getServiceDescription() {
-		return this.serviceDescription;
+	public String getServiceTypeDescription() {
+		return this.serviceTypeDescription;
 	}
 
-	public void setServiceDescription(String serviceDescription) {
-		this.serviceDescription = serviceDescription;
+	public void setServiceTypeDescription(String serviceTypeDescription) {
+		this.serviceTypeDescription = serviceTypeDescription;
 	}
 
 	public Integer getCreateby() {

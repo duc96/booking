@@ -14,19 +14,19 @@
 
 			<div class="container">
 				<div class="form-group">
-					<label for="service_name"><b>Tên Dịch Vụ</b></label> 
+					<label for="service_type_name"><b>Tên Dịch Vụ</b></label> 
 					<input type="text"
 						minlength="6"
 						title="<div>Tên dịch vụ phải lớn hơn 6 ký tự</div>"
-						placeholder="Dịch vụ" name="service_name" required />
+						placeholder="Dịch vụ" name="service_type_name" required />
 				</div>
 				<div class="form-group">
-					<label for="service_description"><b>Mô Tả</b></label> 
+					<label for="service_type_description"><b>Mô Tả</b></label> 
 					<textarea
 					minlength="6"
 					data-toggle="tooltip" data-html="true"
 					title="<div>Mô tả lớn hơn 6 ký tự</div>"
-						placeholder="Mô tả" name="service_description" required>
+						placeholder="Mô tả" name="service_type_description" required>
 						</textarea>
 				</div>
 				<button id="postbtn" type="button">Tạo Mới</button>

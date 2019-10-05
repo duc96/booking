@@ -145,3 +145,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 		padding: 0;
 	}
 }
+#grid-data-api th[data-column-id="index"] {
+	width: 60px;
+}
+#grid-data-api th[data-column-id="commands"]{
+	width: 100px;
+}
+#grid-data-api th[data-column-id="cretatedate"] {
+	width: 150px;
+}

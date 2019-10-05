@@ -9,6 +9,15 @@ $(document).ready(function() {
 				    icon: 'error'
 				});
 			},
+			warning: function(msg) {
+				$.toast({
+				    text: msg || "Cảnh báo",
+				    heading: 'Cảnh Báo',
+				    showHideTransition: 'slide',
+				    position: 'bottom-right',
+				    icon: 'warning'
+				});
+			},
 			success: function(msg) {
 				$.toast({
 				    text: msg || "Lỗi",

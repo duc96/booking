@@ -2,15 +2,18 @@ $(document).ready(function() {
 	var lock = false;
 	var isEdit = false;
 	var _editData = null;
-	console.log(8887)
 	var grid = $("#grid-data-api").bootgrid({
 	    ajax: true,
+	    sorting: false,
+	    columnSelection: false,
+	    searchSettings: false,
+	    keepSelection:false,
 	    ajaxSettings: {
 	        method: "GET",
 	        cache: false
 	    },
 	    labels: {
-	    	infos: "[{{ctx.start}} - {{ctx.end}}] {{ctx.total}}"
+	    	infos: ""
 	    },
 	    url: document.ctx + "/api/service/types",
 	    formatters: {
@@ -37,10 +40,14 @@ $(document).ready(function() {
 	//Delete data
 	function removeData(data)
 	{
-		clientRequest.post("/api/service/type", {id: data.rowId + "" })
+		clientRequest.remove("/api/service/type", {id: data.rowId + "" })
 		.then(function(res) {
-			console.log(res)
 			if(res.status == "Success") {
+				toast.success("Xoá thành công.");
+				reloadData();
+				confirmObj.close();
+			} else {
+				toast.error("Xoá thất bại.");
 			}
 		})
 	}
@@ -48,13 +55,13 @@ $(document).ready(function() {
 	//Edit data
 	function editData(data)
 	{
-		clientRequest.get("/api/user/getone", {id: parseInt(data.rowId)})
+		clientRequest.get("/api/service/type", {id: parseInt(data.rowId)})
 		.then(function(res) {
 			if(res.status == "Success") {
 				isEdit = true;
 				_editData = res.rows[0];
-				$("#servicetype-form input[name=service_name]").val(_editData.service_name);
-				$("#servicetype-form input[name=service_description]").val(_editData.service_description);
+				$("#servicetype-form input[name=service_type_name]").val(_editData.service_type_name);
+				$("#servicetype-form textarea[name=service_type_description]").val(_editData.service_type_description);
 				openModal();
 			}
 		})
@@ -99,30 +106,28 @@ $(document).ready(function() {
 	
 	//Đăng ký sự kiên click, tạo mới / Chỉnh sửa data
 	$("#appservicetype #postbtn").on("click", function(event) {
-		if(lock == true) {
-			return;
-		}
-		lock = true;
 		if(!signInValidate()) {
-			return;
-		}
-		if(!validateData()) {
 			return;
 		}
 		
 		var postData = {
-			ServiceName: $("#servicetype-form input[name=service_name]").val(),
-			ServiceDescription: $("#servicetype-form textarea[name=service_description]").val().trim()
+			ServiceTypeName: $("#servicetype-form input[name=service_type_name]").val(),
+			ServiceTypeDescription: $("#servicetype-form textarea[name=service_type_description]").val().trim()
 		};
+		
+		if(!validateData(postData)) {
+			return;
+		}
 		var apiUrl = "/api/service/type"; 
-//		if(isEdit == true) {
-//			apiUrl = "/api/user/update"; 
-//			postData['id'] = _editData.id + "";
-//			if(!postData.password) {
-//				delete postData.password;
-//			}
-//		}
-		clientRequest.post(apiUrl, postData)
+		var _method = "post"
+		if(isEdit == true) {
+			_method = "put";
+			postData['id'] = _editData['id'] + "";
+			if(postData['ServiceTypeName'] == _editData['service_type_name']) {
+				delete postData['ServiceTypeName'];
+			}
+		}
+		clientRequest[_method](apiUrl, postData)
 		.then(function(res) {
 			if(res.status == "Success") {
 				toast.success(isEdit?"Cập nhật thành công.":"Tạo mới thành công.");
@@ -131,14 +136,8 @@ $(document).ready(function() {
 			} else {
 				toast.error(isEdit?"Cập nhật thất bại.":"Tạo mới thất bại.");
 			}
-			lock = false;
 		})
 	});
-	
-	function removeUser(id)
-	{
-		
-	}
 	
 	//Validate form
 	function signInValidate() {
@@ -157,40 +156,23 @@ $(document).ready(function() {
 	}
 	
 	//Validate data
-	function validateData()
+	function validateData(postData)
 	{
-		if(isEdit) {
+		if(!isEdit) {
 			return true;
 		}
-		
-		if($("#signup-form .has-danger").length) {
-			return false;
-		}
-		var p1 = $("#signup-form input[name=password]").val()
-		var p2 = $("#signup-form input[name=repassword]").val();
-		if(p1 != p2) {
-			$("#signup-form input[name=password]").parent().addClass("has-danger");
-		}else {
-			$("#signup-form input[name=password]").parent().removeClass("has-danger");
-		}
-		return true;
-	}
-	
-	//Validate password
-	$("#signup-form .input-password").on("keyup", function(){
-		var p1 = $("#signup-form input[name=password]").val()
-		var p2 = $("#signup-form input[name=repassword]").val();
-		if(p1.length > 6 && p2.length > 6) {
-			if(p1 != p2) {
-				if(!$(this).parent().hasClass("has-danger")) {
-					$(this).parent().addClass("has-danger");
-				}
-			} else {
-				$(this).parent().removeClass("has-danger");
+		var mapp = {
+				'ServiceTypeName': 'service_type_name',
+				'ServiceTypeDescription': 'service_type_description'
+		};
+		for(var i in postData) {
+			if(postData[i] != _editData[mapp[i]]) {
+				return true;
 			}
 		}
-	});
-	
-	//Enable tool-tip
-	$('[data-toggle="tooltip"]').tooltip()
+		
+		toast.warning("Bạn chưa thay đổi dữ liệu.");
+		
+		return false;
+	}
 })

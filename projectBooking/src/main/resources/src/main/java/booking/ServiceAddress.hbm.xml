@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generated Oct 5, 2019, 3:24:59 PM by Hibernate Tools 5.4.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
-    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.ServiceType" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="service_type">
-        <id name="serviceTypeId" type="java.lang.Integer">
-            <column name="service_type_id"/>
+    <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.ServiceAddress" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="service_address">
+        <id name="addressId" type="java.lang.Integer">
+            <column name="address_id"/>
             <generator class="identity"/>
         </id>
-        <property generated="never" lazy="false" name="serviceTypeName" optimistic-lock="true" type="nstring" unique="false">
-            <column name="service_type_name" not-null="true" unique="true"/>
+        <property generated="never" lazy="false" name="address1" optimistic-lock="true" type="nstring" unique="false">
+            <column name="address1" not-null="true"/>
         </property>
-        <property generated="never" lazy="false" name="serviceTypeCode" optimistic-lock="true" type="string" unique="false">
-            <column length="100" name="service_type_code" not-null="true"/>
+        <property generated="never" lazy="false" name="address2" optimistic-lock="true" type="nstring" unique="false">
+            <column name="address2"/>
         </property>
-        <property generated="never" lazy="false" name="serviceTypeDescription" optimistic-lock="true" type="nstring" unique="false">
-            <column name="service_type_description" not-null="true"/>
+        <property generated="never" lazy="false" name="addressCity" optimistic-lock="true" type="nstring" unique="false">
+            <column name="address_city" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="addressZipcode" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="address_zipcode"/>
         </property>
         <property generated="never" lazy="false" name="createby" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="createby"/>
