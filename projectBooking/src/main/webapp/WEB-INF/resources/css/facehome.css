@@ -1,0 +1,53 @@
+.child{
+    display: none;
+    position: absolute;
+}
+.father:hover{
+    color:black;
+}
+.father:hover .child{
+    display: block;
+    background-color: antiquewhite;
+    width: 250px;
+}
+.father:hover .child ul{
+    background-color: azure;
+    color: brown;
+    padding: 4px;
+    margin: 4px;
+    width: 250px;
+}
+.father:hover .child ul:hover{
+    background-color: blanchedalmond;
+    color:black;
+}
+.father{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+body{
+    background-color:azure;
+}
+.top-right{
+    float: right;
+    border-radius: 10px;
+}
+.buttop-right{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 17px;
+    padding: 10px;
+    margin: 7px;
+}
+.buttop-right a{
+    text-decoration: none;
+}
+.img{
+    padding: 10px;
+}
+.img:hover{
+    opacity: 0.7;
+}
+.room{
+    float: left;
+    padding: 2px;
+}

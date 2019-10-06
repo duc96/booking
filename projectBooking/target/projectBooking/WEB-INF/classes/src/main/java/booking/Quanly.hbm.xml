@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Aug 24, 2019, 7:45:57 PM by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 5, 2019, 3:24:59 PM by Hibernate Tools 5.4.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="booking" dynamic-insert="false" dynamic-update="false" mutable="true" name="src.main.java.booking.Quanly" optimistic-lock="version" polymorphism="implicit" schema="dbo" select-before-update="false" table="quanly">
         <id name="idquanly" type="string">
@@ -15,5 +15,11 @@
         <property generated="never" lazy="false" name="emailquanly" optimistic-lock="true" type="string" unique="false">
             <column length="50" name="emailquanly" not-null="true"/>
         </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="adminHomes" optimistic-lock="true" sort="unsorted" table="admin_home">
+            <key on-delete="noaction">
+                <column length="50" name="idquanly" not-null="true"/>
+            </key>
+            <one-to-many class="src.main.java.booking.AdminHome" embed-xml="true" not-found="exception"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	list danh sach cac khach hang
+	<h1>list danh sach cac khach hang</h1>
 </body>
 </html>

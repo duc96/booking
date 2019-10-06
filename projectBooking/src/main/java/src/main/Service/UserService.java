@@ -150,7 +150,7 @@ public class UserService {
         	break;
         }
 		if(user == null) {
-			throw new NullPointerException("Không tìm thấy dữ liệu."); 
+			throw new NullPointerException("KhÃ´ng tÃ¬m tháº¥y dá»¯ liá»‡u."); 
 		}
 		
 		if(postBody.containsKey("password")) {
@@ -186,7 +186,7 @@ public class UserService {
 		}
 		
 		user.setCretatedate(new Date());
-		user.setIsdeleted(0);
+		user.setIsdeleted(0); // định dạng cho user là có thể enable hay disable
 		user = (AdminUsers)daoObj.create(user);
 		
 		return user.getUserId();

@@ -4,6 +4,7 @@
 <hibernate-reverse-engineering>
 <type-mapping>
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="NVARCHAR" hibernate-type="nstring"></sql-type>
 </type-mapping>
 <table-filter match-catalog="booking" match-schema="dbo" match-name=".*"/>
 </hibernate-reverse-engineering>
