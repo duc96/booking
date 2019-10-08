@@ -4,6 +4,7 @@
 	border-radius: 0!important;
 	background-color: #0f2eca;
 	z-index: 1010;
+	margin-bottom: auto;
 }
 .app-header a {
 	color: white !important;

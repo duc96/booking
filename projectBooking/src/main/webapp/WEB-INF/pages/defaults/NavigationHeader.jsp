@@ -19,10 +19,10 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#"> <i class='fas fa-hotel'
+				<li class="active menu-item1 menu-item"><a href="${pageContext.request.contextPath}"> <i class='fas fa-hotel'
 						style='font-size: 24px'></i> Khách Sạn
 				</a></li>
-				<li><a href="#"> <i class='fas fa-plane'
+				<li class="menu-item2 menu-item"><a href="${pageContext.request.contextPath}/flight"> <i class='fas fa-plane'
 						style='font-size: 24px'></i> Chuyến Bay
 				</a></li>
 			</ul>
@@ -35,3 +35,15 @@
 	</div>
 	<!-- /.container-fluid -->
 </nav>
+<script>
+$(document).ready(function() {
+	var locationPath = location.pathname;//"/projectBooking/flight"
+	$(".app-header .menu-item").removeClass("active");
+	console.log(document.ctx+"/flight")
+	if(locationPath == document.ctx+"/flight") {
+		$(".app-header .menu-item2").addClass("active");
+	}else {
+		$(".app-header .menu-item1").addClass("active");
+	}
+})
+</script>
